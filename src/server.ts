@@ -1,6 +1,29 @@
 import express from "express";
+import {PORT} from "./config/libConfig.ts";
+import {libRouter} from "./routes/libRouter.ts";
+import {errorHandler} from "./errorHandler/errorHandler.ts";
 
-const app = express()
-app.listen(3333, ()=>{
-    console.log("Server running at http://localhost:3333 ");
-})
+export  const launchServer = () => {
+    const app = express();
+
+    app.listen(PORT, () => console.log(`Server runs at http://localhost:${PORT}`));
+
+
+//============Middleware===========
+
+    app.use(express.json());
+
+//============Router===========
+
+    app.use('/api', libRouter);
+
+
+    app.use((req: express.Request, res: express.Response) => {
+        res.status(404).send('Page Not Found');
+    })
+//==================ErrorHandler===============
+    app.use(errorHandler)
+
+}
+
+
