@@ -2,6 +2,8 @@
 import express from "express";
 import {BookController} from "../controllers/BookController.js";
 import * as controller from "../controllers/bookControllerFunc.js";
+import {bodyValidation} from "../validation/bodyValidation.js";
+import {BookDtoSchema} from "../validation/joiSchemas.js";
 
 export const bookRouter = express.Router();
 
@@ -18,5 +20,5 @@ export const bookRouter = express.Router();
 
 bookRouter.get('/',controller.getAllBooks);
 // bookRouter.post('/', bodyValidator(BookDtoJoiSchema), controller.addBook)
-bookRouter.post('/',  controller.addBook);
+bookRouter.post('/',  bodyValidation(BookDtoSchema), controller.addBook);
 bookRouter.post('/genre',  controller.getBooksByGenre);
