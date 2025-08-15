@@ -3,31 +3,31 @@ import {Book, BookGenres} from "../model/Book.ts";
 
 export class LibServiceImplEmbedded implements LibService{
     private books:Book[] = [];
-    addBook(book: Book): boolean {
+    async addBook(book: Book): Promise<boolean> {
         const index = this.books.findIndex(item => item.id === book.id);
         if(index === -1 ){
             this.books.push(book)
-            return true
+            return new Promise(resolve => resolve(true))
         }
-        return false;
+        return Promise.resolve(false);
     }
 
-    getAllBooks(): Book[] {
-        return [...this.books];
+   async getAllBooks(): Promise<Book[]> {
+        return Promise.resolve([...this.books]);
     }
 
-    getBooksByGenre(genre: BookGenres): Book[] {
+    async getBooksByGenre(genre: BookGenres): Promise<Book[]> {
         return this.books.filter(item => item.genre === genre);
     }
 
-    pickUpBook(id: string, reader: string): void {
+    async pickUpBook(id: string, reader: string): Promise<void> {
     }
 
-    removeBook(id: string): Book {
+    async removeBook(id: string): Promise<Book> {
         throw 'to do';
     }
 
-    returnBook(id: string): void {
+    async returnBook(id: string): Promise<void> {
     }
 
 }
