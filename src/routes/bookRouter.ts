@@ -19,7 +19,6 @@ export const bookRouter = express.Router();
 
 
 bookRouter.get('/',controller.getAllBooks);
-// bookRouter.post('/', bodyValidator(BookDtoJoiSchema), controller.addBook)
 bookRouter.post('/',  bodyValidation(BookDtoSchema), controller.addBook);
-bookRouter.post('/genre',  controller.getBooksByGenre);
-bookRouter.get('/genre_status')
+bookRouter.get('/genre',  controller.getBooksByGenre);
+// bookRouter.get('/genre_status')

@@ -4,7 +4,8 @@ import {LibService} from "../services/libService.js";
 import {Book, BookDto} from "../model/Book.js";
 import {convertBookDtoToBook, getGenre} from "../utils/tools.js";
 import {HttpError} from "../errorHandler/HttpError.js";
-import {libServiceMongo as service} from "../services/libServiceImplMongo.js";
+// import {libServiceMongo as service} from "../services/libServiceImplMongo.js";
+import {libServiceSql as service} from '../services/libServiceImplSQL.js'
 
 // const libService = new LibServiceImplEmbedded();
 
@@ -18,7 +19,7 @@ export const  addBook = async (req: Request, res: Response) => {
     const book: Book = convertBookDtoToBook(dto);
     const result = await service.addBook(book);
     if (result) {
-        res.status(201).json(book)
+        res.status(201).send("Book successfully added")
     } else {
         throw new HttpError(409, 'Book not added. Id conflict.');
     }

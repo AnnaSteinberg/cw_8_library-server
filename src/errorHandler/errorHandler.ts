@@ -5,6 +5,6 @@ export const errorHandler = (err:Error, req:Request, res:Response,  next: NextFu
     if(err instanceof HttpError){
         res.status(err.status).send(err.message)
     }else {
-        res.status(500).send('!Unknown server error!')
+        res.status(500).send('!Unknown server error!' + err.message)
     }
 }

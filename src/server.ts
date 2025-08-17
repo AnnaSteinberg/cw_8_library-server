@@ -1,12 +1,17 @@
 import express from "express";
-import {PORT} from "./config/libConfig.ts";
 import {libRouter} from "./routes/libRouter.ts";
 import {errorHandler} from "./errorHandler/errorHandler.ts";
 import morgan from "morgan";
 import * as fs from "node:fs";
+import dotenv from "dotenv";
+
 
 export  const launchServer = () => {
+    //===load environments=======
+    dotenv.config();
+    // console.log(process.env);
     const app = express();
+    const PORT = process.env.PORT
 
     app.listen(PORT, () => console.log(`Server runs at http://localhost:${PORT}`));
 
