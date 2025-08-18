@@ -20,5 +20,8 @@ export const bookRouter = express.Router();
 
 bookRouter.get('/',controller.getAllBooks);
 bookRouter.post('/',  bodyValidation(BookDtoSchema), controller.addBook);
+bookRouter.delete('/',controller.removeBook);
+
 bookRouter.get('/genre',  controller.getBooksByGenre);
+bookRouter.patch('/pickup', controller.pickUpBook);
 // bookRouter.get('/genre_status')

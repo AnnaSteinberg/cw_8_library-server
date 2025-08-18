@@ -1,5 +1,5 @@
 import {LibService} from "./libService.ts";
-import {Book, BookGenres} from "../model/Book.ts";
+import {Book, BookGenres, Reader} from "../model/Book.ts";
 
 export class LibServiceImplEmbedded implements LibService{
     private books:Book[] = [];
@@ -20,7 +20,7 @@ export class LibServiceImplEmbedded implements LibService{
         return this.books.filter(item => item.genre === genre);
     }
 
-    async pickUpBook(id: string, reader: string): Promise<void> {
+    async pickUpBook(id: string, reader: Reader): Promise<void> {
     }
 
     async removeBook(id: string): Promise<Book> {

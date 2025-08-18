@@ -1,3 +1,4 @@
+import {number} from "joi";
 
 export type BookDto = {
     title: string,
@@ -13,6 +14,12 @@ export type  Book = {
     genre: BookGenres,
     status: BookStatus,
     pickList: PickRecord[]
+}
+
+export type Reader = {
+        name: string,
+        email: string,
+        phone?: string
 }
 
 export enum BookGenres {
@@ -32,7 +39,7 @@ export enum BookStatus {
 }
 
 export type PickRecord = {
-    reader: string,
+    reader: Reader,
     pick_date: string,
     return_date: string|null
 }
