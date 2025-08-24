@@ -1,5 +1,5 @@
 import {LibService} from "./libService.js";
-import {Book, BookGenres, Reader} from "../model/Book.js";
+import {Book, BookGenres, ReaderLib} from "../model/Book.js";
 import {pool} from "../config/libConfig.js";
 import {ResultSetHeader} from 'mysql2'
 
@@ -24,7 +24,7 @@ export class LibServiceImplSQL implements LibService {
         return rows as Book[];
     }
 
-    async pickUpBook(id: string, reader: Reader): Promise<void> {
+    async pickUpBook(id: string, reader: ReaderLib): Promise<void> {
         const [rows] = await pool.query('SELECT reader_id FROM readers WHERE email = ?', [reader.email]);
         const typedRows = rows as { reader_id: number }[];
 

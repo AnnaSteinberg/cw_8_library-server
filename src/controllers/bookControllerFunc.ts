@@ -1,7 +1,7 @@
 import {Request, Response} from "express";
 import {LibService} from "../services/libService.js";
 // import {libServiceEmbedded as service, LibServiceImplEmbedded} from "../services/libServiceImplEmbedded.js";
-import {Book, BookDto, Reader} from "../model/Book.js";
+import {Book, BookDto, ReaderLib} from "../model/Book.js";
 import {convertBookDtoToBook, getGenre} from "../utils/tools.js";
 import {HttpError} from "../errorHandler/HttpError.js";
 // import {libServiceMongo as service} from "../services/libServiceImplMongo.js";

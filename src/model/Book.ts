@@ -16,7 +16,7 @@ export type  Book = {
     pickList: PickRecord[]
 }
 
-export type Reader = {
+export type ReaderLib = {
         name: string,
         email: string,
         phone?: string
@@ -39,7 +39,7 @@ export enum BookStatus {
 }
 
 export type PickRecord = {
-    reader: Reader,
+    reader: ReaderLib,
     pick_date: string,
     return_date: string|null
 }
