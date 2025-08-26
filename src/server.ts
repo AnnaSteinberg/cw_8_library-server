@@ -5,6 +5,9 @@ import morgan from "morgan";
 import * as fs from "node:fs";
 import dotenv from "dotenv";
 import {accountRouter} from "./routes/accountRouter.js";
+import {accountServiceMongo} from "./services/AccountServiceEmplMongo.js";
+import {authentication, skipRoutes} from "./middleware/authentication.js";
+import {SKIP_ROUTES} from "./config/libConfig.js";
 
 
 export  const launchServer = () => {
@@ -19,7 +22,8 @@ export  const launchServer = () => {
     const logStream = fs.createWriteStream("./src/logs/access.log", { flags: "a" });
 
 //============Middleware===========
-
+    app.use(authentication(accountServiceMongo));
+    app.use(skipRoutes(SKIP_ROUTES));
     app.use(express.json());
     app.use(morgan("dev"));
     app.use(morgan('combined', {stream: logStream}));
