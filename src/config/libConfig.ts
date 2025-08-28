@@ -1,5 +1,6 @@
 import mysql from 'mysql2/promise'
 import dotenv from "dotenv";
+import {Roles} from "../utils/libTypes.js";
 
 export  const PORT = 3333;
 
@@ -16,5 +17,24 @@ export const pool = mysql.createPool({
 })
 
 export const SKIP_ROUTES = [
-    'POST/accounts'
+    "POST/accounts", "GET/api/books"
+]
+
+/*
+USER: getAccById(?), changePass(?), updateAcc(?)
+ADMIN: getAccById, updateAcc
+! SUPERVISOR: deleteAcc, changeRoles
+ */
+
+export const PATH_ROUTES = {
+"GET/accounts/reader": [Roles.USER, Roles.ADMIN],
+    "PATCH/accounts/password": [Roles.USER],
+    "DELETE/accounts": [Roles.SUPERVISOR],
+    "PATCH/accounts":[Roles.USER, Roles.ADMIN],
+    "PUT/accounts/roles" : [Roles.SUPERVISOR],
+
+}
+
+export  const  CHECK_ID_ROUTES = [
+    "GET/accounts/reader", "PATCH/accounts/password", "PATCH/accounts"
 ]

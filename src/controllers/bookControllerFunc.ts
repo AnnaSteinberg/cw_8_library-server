@@ -1,5 +1,4 @@
 import {Request, Response} from "express";
-import {LibService} from "../services/libService.js";
 // import {libServiceEmbedded as service, LibServiceImplEmbedded} from "../services/libServiceImplEmbedded.js";
 import {Book, BookDto, ReaderLib} from "../model/Book.js";
 import {convertBookDtoToBook, getGenre} from "../utils/tools.js";
@@ -39,10 +38,15 @@ export const removeBook = async (req: Request, res: Response) => {
     res.json(result);
 }
 
-export const pickUpBook = async (req: Request, res: Response) => {
-    const {id, name, email, phone} = req.query;
-    const reader = {name:name as string, email:email as string, phone:phone as string};
-    await service.pickUpBook(id as string, reader);
-    res.send(`Book picked by ${reader}`)
-}
+// export const pickUpBook = async (req: Request, res: Response) => {
+//     const {id, name, email, phone} = req.query;
+//     const reader = {name:name as string, email:email as string, phone:phone as string};
+//     await service.pickUpBook(id as string, reader);
+//     res.send(`Book picked by ${reader}`)
+// }
 
+// export const pickUpBook = async (req: Request, res: Response) => {
+//     const {id, reader} = req.query;
+//     await service.pickUpBook(id as string, reader as string);
+//     res.send(`Book picked by ${reader}`)
+// }

@@ -1,4 +1,3 @@
-import {number} from "joi";
 
 export type BookDto = {
     title: string,

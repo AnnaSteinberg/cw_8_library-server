@@ -1,6 +1,5 @@
 // import {LibService} from "./libService.js";
 // import {Book, BookGenres, BookStatus} from "../model/Book.js";
-// // import {Promise} from "mongoose";
 // import {BookMongooseModel} from "../model/BookMongooseModel.js";
 // import {HttpError} from "../errorHandler/HttpError.js";
 //
@@ -11,18 +10,18 @@
 //         if(isExists){
 //             return Promise.resolve(false)
 //         }
-//         // const newBook = new BookMongooseModel(book);
-//         // await newBook.save()
+//         const newBook = new BookMongooseModel(book);
+//         await newBook.save()
 //
-//         const  temp = await BookMongooseModel.create({
-//             _id: book.id,
-//             title: book.title,
-//             author: book.author,
-//             genre: book.genre,
-//             status: book.status,
-//             pickList:book.pickList
-//         })
-//         if(!temp)return Promise.resolve(false);
+//         // const  temp = await BookMongooseModel.create({
+//         //     _id: book.id,
+//         //     title: book.title,
+//         //     author: book.author,
+//         //     genre: book.genre,
+//         //     status: book.status,
+//         //     pickList:book.pickList
+//         // })
+//         // if(!temp)return Promise.resolve(false);
 //
 //         return Promise.resolve(true);
 //     }

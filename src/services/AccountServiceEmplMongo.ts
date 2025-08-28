@@ -2,6 +2,7 @@ import {AccountService} from "./accountService.js";
 import {Reader} from "../model/Reader.js";
 import {ReaderModel} from "../model/ReaderMongooseModel.js";
 import {HttpError} from "../errorHandler/HttpError.js";
+import {Roles} from "../utils/libTypes.js";
 
 export class AccountServiceEmplMongo implements AccountService{
     async addAccount(reader: Reader): Promise<void> {
@@ -27,6 +28,22 @@ export class AccountServiceEmplMongo implements AccountService{
 
     }
 
+    async updateAccount(updReader: Reader): Promise<Reader> {
+        const result =
+            await ReaderModel.findByIdAndUpdate(updReader._id, {userName: updReader.userName, email: updReader.email, birthdate: updReader.birthdate},{new:true})
+        if(!result) throw new HttpError(404, "Account not found");
+        return result as unknown as Reader;
+    }
+
+    async changeRoles(id: number, newRoles: Roles[]): Promise<Reader> {
+        const result =
+            await ReaderModel.findByIdAndUpdate(id, {roles : newRoles},{new:true})
+        if(!result) throw new HttpError(404, "Account not found");
+        return result as unknown as Reader;
+    }
+
 }
+
+
 
 export const accountServiceMongo = new AccountServiceEmplMongo();

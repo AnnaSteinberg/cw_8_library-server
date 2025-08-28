@@ -23,5 +23,5 @@ bookRouter.post('/',  bodyValidation(BookDtoSchema), controller.addBook);
 bookRouter.delete('/',controller.removeBook);
 
 bookRouter.get('/genre',  controller.getBooksByGenre);
-bookRouter.patch('/pickup', controller.pickUpBook);
+// bookRouter.patch('/pickup', controller.pickUpBook);
 // bookRouter.get('/genre_status')

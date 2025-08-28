@@ -3,6 +3,7 @@ import {Reader, ReaderDto} from "../model/Reader.js";
 import {checkReaderId, convertReaderDtoToReader} from "../utils/tools.js";
 import {accountServiceMongo} from "../services/AccountServiceEmplMongo.js";
 import {HttpError} from "../errorHandler/HttpError.js";
+import {Roles} from "../utils/libTypes.js";
 
 export let removeAccount = (req:Request, res:Response) => {
         res.send("ok")
@@ -31,3 +32,18 @@ export const addAccount = async (req: Request, res: Response) => {
     res.status(201).send()
 }
 
+export const updateAccount = async (req: Request, res: Response) => {
+    const body = req.body;
+    const _id = checkReaderId(req.query.id as string)
+    const dto:ReaderDto = {...body, id: _id, password:""};
+    const updReader = convertReaderDtoToReader(dto);
+    const updAccount = await accountServiceMongo.updateAccount(updReader);
+    res.json(updAccount);
+}
+
+export const changeRoles = async (req: Request, res: Response) => {
+    const id = checkReaderId(req.query.id as string);
+    const newRoles = req.body as Roles[];
+    const readerWithNewRoles = await accountServiceMongo.changeRoles(id, newRoles);
+    res.json(readerWithNewRoles)
+}
